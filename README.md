@@ -12,7 +12,7 @@ Full FPL pipeline: cleans FBRef + FPL data, predicts player points by combining 
 - Reporting: per‑GW transfers, captaincy, XI, bench ordering by expected points; player prediction CSV.
 - ID hygiene: manual FBRef ID overrides, duplicate match collapse, safe merges.
 
-# Outputs
+# Outputs (See example_output.md)
 - Expected points per player per future GW (conditional & unconditional).
 - Optimised multi‑GW squad plan (squad_ids, xi_ids, captains, transfers).
 - Risk metrics (distribution quantiles).
