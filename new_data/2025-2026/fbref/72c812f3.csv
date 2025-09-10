@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+84.0,32,0,Leeds United,0,Y,Premier League,DM,0.0,0.0,,0,58,0,1,1,2025-08-18,0,Away,L 0–1,90,0,6,0,"<a href=""/en/squads/d3fd31cc/Everton-Stats"">Everton</a>",1,42,0,Matchweek 1,1,50,0,0,0.1,1,0,Mon
+87.5,30,0,Brighton,1,Y,Premier League,DM,0.0,0.0,,1,48,0,0,1,2025-08-24,0,Home,W 2–0,90,0,1,0,"<a href=""/en/squads/d3fd31cc/Everton-Stats"">Everton</a>",2,35,2,Matchweek 2,0,40,1,0,0.0,1,0,Sun
+81.3,24,0,Wolves,0,Y,Premier League,DM,0.3,0.3,,1,39,0,3,2,2025-08-30,0,Away,W 3–2,75,0,4,0,"<a href=""/en/squads/d3fd31cc/Everton-Stats"">Everton</a>",3,26,0,Matchweek 3,0,32,1,0,0.1,0,0,Sat

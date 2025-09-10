@@ -1,0 +1,3 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+64.0,18,0,Chelsea,2,Y,Premier League,AM,0.2,0.2,,0,37,0,6,3,2025-08-17,0,Away,D 0–0,83,0,1,0,"<a href=""/en/squads/47c64c55/Crystal-Palace-Stats"">Crystal Palace</a>",1,16,0,Matchweek 1,1,25,0,0,0.0,4,2,Sun
+100.0,9,0,Liverpool,1,N,Premier League,LW,0.0,0.0,,0,12,0,0,1,2025-08-31,0,Away,L 0–1,21,0,0,0,"<a href=""/en/squads/18bb7c10/Arsenal-Stats"">Arsenal</a>",0,9,0,Matchweek 3,0,9,1,0,0.0,1,0,Sun

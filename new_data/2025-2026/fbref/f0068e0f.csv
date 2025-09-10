@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+57.1,11,0,Tottenham,0,Y,Premier League,CM,0.1,0.1,,0,22,0,3,3,2025-08-16,0,Away,L 0–3,62,0,2,0,"<a href=""/en/squads/943e8050/Burnley-Stats"">Burnley</a>",1,8,0,Matchweek 1,0,14,1,0,0.2,0,2,Sat
+71.4,4,0,Sunderland,0,N,Premier League,DM,0.0,0.0,,0,14,0,0,0,2025-08-23,0,Home,W 2–0,22,0,2,0,"<a href=""/en/squads/943e8050/Burnley-Stats"">Burnley</a>",1,5,0,Matchweek 2,2,7,0,0,0.0,1,0,Sat
+28.6,4,0,Manchester Utd,0,N,Premier League,"CM,DM",0.0,0.0,,0,9,1,0,0,2025-08-30,0,Away,L 2–3,15,0,1,0,"<a href=""/en/squads/943e8050/Burnley-Stats"">Burnley</a>",0,2,1,Matchweek 3,1,7,1,0,0.0,0,0,Sat

@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+73.5,39,0,Aston Villa,0,Y,Premier League,LW,0.2,0.2,,0,44,0,3,4,2025-08-16,0,Away,D 0–0,89,0,5,0,"<a href=""/en/squads/b2b47a98/Newcastle-United-Stats"">Newcastle Utd</a>",0,25,0,Matchweek 1,0,34,7,0,0.5,3,0,Sat
+80.0,11,0,Liverpool,0,Y,Premier League,LW,0.0,0.0,,0,16,0,0,3,2025-08-25,0,Home,L 2–3,75,0,3,0,"<a href=""/en/squads/b2b47a98/Newcastle-United-Stats"">Newcastle Utd</a>",0,12,0,Matchweek 2,0,15,2,0,0.1,1,0,Mon
+90.0,13,0,Leeds United,0,N,Premier League,LW,0.0,0.0,,0,14,0,1,0,2025-08-30,0,Away,D 0–0,23,0,1,0,"<a href=""/en/squads/b2b47a98/Newcastle-United-Stats"">Newcastle Utd</a>",1,9,0,Matchweek 3,0,10,2,0,0.0,1,0,Sat

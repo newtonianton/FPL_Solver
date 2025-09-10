@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+57.1,3,0,Fulham,0,N,Premier League,FW,0.0,0.0,,0,10,0,0,0,2025-08-16,0,Home,D 1–1,22,0,0,0,"<a href=""/en/squads/d07537b9/Brighton-and-Hove-Albion-Stats"">Brighton</a>",1,4,0,Matchweek 1,0,7,0,0,0.0,0,0,Sat
+71.4,11,0,Everton,0,Y,Premier League,FW,1.6,0.8,,0,20,0,1,1,2025-08-24,0,Away,L 0–2,90,1,0,0,"<a href=""/en/squads/d07537b9/Brighton-and-Hove-Albion-Stats"">Brighton</a>",0,10,0,Matchweek 2,1,14,0,0,0.0,0,0,Sun
+60.0,7,0,Manchester City,0,Y,Premier League,FW,0.0,0.0,,0,12,0,0,1,2025-08-31,0,Home,W 2–1,60,0,0,0,"<a href=""/en/squads/d07537b9/Brighton-and-Hove-Albion-Stats"">Brighton</a>",0,6,0,Matchweek 3,0,10,0,0,0.1,0,0,Sun

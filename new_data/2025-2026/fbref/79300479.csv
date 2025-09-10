@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+68.9,31,0,Manchester Utd,3,Y*,Premier League,RM,0.1,0.1,,1,60,0,2,4,2025-08-17,0,Away,W 1–0,90,0,6,0,"<a href=""/en/squads/18bb7c10/Arsenal-Stats"">Arsenal</a>",1,31,1,Matchweek 1,0,45,4,0,0.1,5,1,Sun
+87.5,18,0,Leeds United,0,Y*,Premier League,RM,0.1,0.1,,0,26,0,2,1,2025-08-23,0,Home,W 5–0,37,0,6,0,"<a href=""/en/squads/18bb7c10/Arsenal-Stats"">Arsenal</a>",1,21,0,Matchweek 2,0,24,2,0,0.0,0,0,Sat
+80.0,15,0,Liverpool,0,N,Premier League,RM,0.0,0.0,,0,20,0,0,0,2025-08-31,0,Away,L 0–1,21,0,2,0,"<a href=""/en/squads/18bb7c10/Arsenal-Stats"">Arsenal</a>",0,16,0,Matchweek 3,0,20,2,0,0.0,0,0,Sun

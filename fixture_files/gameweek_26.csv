@@ -1,0 +1,21 @@
+team,opponent,was_home,team_strength,opponent_strength
+Everton,Bournemouth,True,1100.0,1180.0
+Nott'm Forest,Wolves,True,1165.0,1125.0
+Chelsea,Leeds,True,1185.0,1075.0
+Crystal Palace,Burnley,True,1140.0,1050.0
+Sunderland,Liverpool,True,1050.0,1355.0
+West Ham,Man Utd,True,1100.0,1125.0
+Aston Villa,Brighton,True,1125.0,1175.0
+Man City,Fulham,True,1275.0,1125.0
+Brentford,Arsenal,True,1120.0,1325.0
+Spurs,Newcastle,True,1130.0,1245.0
+Bournemouth,Everton,False,1180.0,1100.0
+Wolves,Nott'm Forest,False,1125.0,1165.0
+Leeds,Chelsea,False,1075.0,1185.0
+Burnley,Crystal Palace,False,1050.0,1140.0
+Liverpool,Sunderland,False,1355.0,1050.0
+Man Utd,West Ham,False,1125.0,1100.0
+Brighton,Aston Villa,False,1175.0,1125.0
+Fulham,Man City,False,1125.0,1275.0
+Arsenal,Brentford,False,1325.0,1120.0
+Newcastle,Spurs,False,1245.0,1130.0

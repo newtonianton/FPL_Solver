@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+50.0,1,0,Liverpool,0,N,Premier League,RB,0.0,0.0,,0,6,0,0,0,2025-08-15,0,Away,L 2–4,1,0,0,0,"<a href=""/en/squads/4ba7cbea/Bournemouth-Stats"">Bournemouth</a>",0,2,1,Matchweek 1,0,4,0,0,0.0,0,0,Fri
+50.0,0,0,Wolves,0,N,Premier League,DM,0.0,0.0,,0,4,0,0,0,2025-08-23,0,Home,W 1–0,3,0,1,0,"<a href=""/en/squads/4ba7cbea/Bournemouth-Stats"">Bournemouth</a>",0,2,0,Matchweek 2,0,4,0,0,0.0,0,0,Sat
+56.0,3,0,Tottenham,0,N,Premier League,RB,0.0,0.0,,0,35,1,0,1,2025-08-30,0,Away,W 1–0,65,0,4,0,"<a href=""/en/squads/4ba7cbea/Bournemouth-Stats"">Bournemouth</a>",0,14,1,Matchweek 3,2,25,0,0,0.0,0,0,Sat

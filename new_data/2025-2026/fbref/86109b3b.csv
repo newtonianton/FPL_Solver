@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+84.6,21,0,Brighton,0,Y,Premier League,AM,0.2,0.2,,0,32,0,1,4,2025-08-16,0,Away,D 1–1,76,0,9,0,"<a href=""/en/squads/fd962109/Fulham-Stats"">Fulham</a>",3,22,0,Matchweek 1,0,26,3,0,0.0,1,1,Sat
+73.7,21,0,Manchester Utd,0,Y,Premier League,AM,0.2,0.2,,0,30,0,2,0,2025-08-24,0,Home,D 1–1,70,0,3,0,"<a href=""/en/squads/fd962109/Fulham-Stats"">Fulham</a>",1,14,0,Matchweek 2,1,19,1,0,0.0,2,1,Sun
+92.9,16,0,Chelsea,0,Y,Premier League,AM,0.0,0.0,,0,22,0,1,1,2025-08-30,0,Away,L 0–2,66,0,2,0,"<a href=""/en/squads/fd962109/Fulham-Stats"">Fulham</a>",0,13,1,Matchweek 3,1,14,2,0,0.1,3,1,Sat

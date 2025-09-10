@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+72.4,37,0,Bournemouth,0,Y,Premier League,"AM,FW",0.1,0.1,,0,68,0,1,8,2025-08-15,0,Home,W 4–2,81,0,7,0,"<a href=""/en/squads/822bd0ba/Liverpool-Stats"">Liverpool</a>",2,42,0,Matchweek 1,2,58,2,0,0.3,0,0,Fri
+92.9,15,0,Newcastle Utd,0,Y,Premier League,AM,0.1,0.1,,0,38,0,1,1,2025-08-25,0,Away,W 3–2,79,0,2,0,"<a href=""/en/squads/822bd0ba/Liverpool-Stats"">Liverpool</a>",1,26,0,Matchweek 2,1,28,0,0,0.0,0,1,Mon
+66.7,20,0,Arsenal,3,Y,Premier League,AM,0.2,0.2,,0,41,0,2,2,2025-08-31,0,Home,W 1–0,88,0,5,0,"<a href=""/en/squads/822bd0ba/Liverpool-Stats"">Liverpool</a>",2,20,1,Matchweek 3,1,30,2,0,0.1,3,1,Sun

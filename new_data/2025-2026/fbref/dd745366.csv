@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+66.7,6,0,Crystal Palace,0,N,Premier League,DM,0.3,0.3,,0,8,0,2,0,2025-08-17,0,Home,D 0–0,12,0,0,0,"<a href=""/en/squads/cff3d9bb/Chelsea-Stats"">Chelsea</a>",0,4,0,Matchweek 1,0,6,0,0,0.0,0,1,Sun
+90.9,9,0,West Ham,0,N,Premier League,AM,0.0,0.0,,0,13,0,0,1,2025-08-22,0,Away,W 5–1,29,0,2,0,"<a href=""/en/squads/cff3d9bb/Chelsea-Stats"">Chelsea</a>",0,10,1,Matchweek 2,0,11,1,0,0.0,0,0,Fri
+75.0,7,0,Fulham,0,N,Premier League,AM,0.0,0.0,,0,9,1,0,1,2025-08-30,0,Home,W 2–0,10,0,1,0,"<a href=""/en/squads/cff3d9bb/Chelsea-Stats"">Chelsea</a>",1,6,0,Matchweek 3,0,8,1,0,0.0,0,0,Sat

@@ -1,0 +1,4 @@
+passes_pct,carries,goals,opponent,take_ons_won,game_started,comp,position,xg,npxg,match_report,gca,touches,cards_yellow,shots,sca,date,pens_made,venue,result,minutes,pens_att,progressive_passes,assists,team,tackles,passes_completed,interceptions,round,blocks,passes,progressive_carries,cards_red,xg_assist,take_ons,shots_on_target,dayofweek
+0.0,4,0,Sunderland,0,N,Premier League,FW,0.0,0.0,,0,6,0,1,1,2025-08-16,0,Away,L 0–3,20,0,0,0,"<a href=""/en/squads/7c21e445/West-Ham-United-Stats"">West Ham</a>",0,0,0,Matchweek 1,0,1,0,0,0.0,1,0,Sat
+85.7,9,0,Chelsea,2,N,Premier League,FW,0.0,0.0,,0,14,0,1,1,2025-08-22,0,Home,L 1–5,45,0,0,0,"<a href=""/en/squads/7c21e445/West-Ham-United-Stats"">West Ham</a>",0,6,1,Matchweek 2,0,7,0,0,0.0,4,0,Fri
+50.0,6,1,Nott'ham Forest,2,N,Premier League,FW,1.0,1.0,,0,9,0,4,3,2025-08-31,0,Away,W 3–0,27,0,0,0,"<a href=""/en/squads/7c21e445/West-Ham-United-Stats"">West Ham</a>",0,2,0,Matchweek 3,0,4,1,0,0.0,2,4,Sun
