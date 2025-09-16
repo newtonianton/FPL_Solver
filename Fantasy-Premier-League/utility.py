@@ -1,3 +1,15 @@
+import os
+import csv
+
+def load_player_fbref_id_map():
+    """Load master player_fbref_id_map.csv as a dict."""
+    player_map = {}
+    if os.path.exists("player_fbref_id_map.csv"):
+        with open("player_fbref_id_map.csv", newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                player_map[row["Player_Name_fbref"]] = row["FBRef_ID"]
+    return player_map
 import sys
 
 def uprint(*objects, sep=' ', end='\n', file=sys.stdout):

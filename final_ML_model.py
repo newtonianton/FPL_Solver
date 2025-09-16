@@ -16,7 +16,6 @@ from keras.callbacks import EarlyStopping
 from sklearn.preprocessing import StandardScaler
 from bs4 import BeautifulSoup
 
-
 teams_dict = {
     "Ipswich Town": "Ipswich",
     "Leeds United": "Leeds",
@@ -436,7 +435,7 @@ class BaseMLModel:
             pred_df = pred_df.merge(sp_prev, on='FBRef_ID', how='left')
             dist_df = self.assign_distributions(pred_df, start_prob_df=None, hist_start_df=start_prob_df, tune_beta=True)
             dist_df['gameweek'] = gw
-            all_predictions.append(dist_df[['Player_Name_fbref', 'team', 'FBRef_ID','gameweek',
+            all_predictions.append(dist_df[['Player_Name_fbref', 'team', 'opponent', 'FBRef_ID','gameweek',
                                     'expected_points_uncond', 'mean_points_cond', 'start_prob',
                                     'std_points_cond', 'resid_std_scaled', 'alpha_start', 'beta_start', 'value']]
             )
@@ -657,10 +656,10 @@ def process_all_fixtures(fixtures_folder, team_data_file):
             updated_fixtures = add_team_data(fixture_path, team_data_file)
             updated_fixtures.to_csv(fixture_path, index=False)
 
-if __name__ == "__main__":
-    fixtures_folder = "fixture_files"
-    team_data_file = "Fantasy-Premier-League/data/2025-26/teams.csv"
-    gameweeks = [4, 5, 6, 7, 8, 9, 10]
+
+def ML_predictions(gameweeks=None):
+    # fixtures_folder = "fixture_files"
+    # team_data_file = "Fantasy-Premier-League/data/2025-26/teams.csv"
     # process_all_fixtures(fixtures_folder, team_data_file)
     
     # Goalkeeper pipeline
@@ -669,20 +668,13 @@ if __name__ == "__main__":
     gk_pipeline.build_features()
     gk_pipeline.train_test_split(train_seasons=['2023-2024'], test_season='2024-2025')
     gk_pipeline.train_model(best_params={'n_estimators': 60, 'max_depth': 6, 'learning_rate': 0.010643654007341458, 'subsample': 0.707939659787393, 'colsample_bytree': 0.659667184367691})
-    # gk_pipeline.model.plot_residual_heteroskedasticity()
-    # gk_pipeline.evaluate(test=gk_pipeline.test)
-    # gk_pipeline.evaluate(cv_folds=5)
-    # gk_feature_importances = gk_pipeline.model.plot_feature_importances()
-
+    
     # Defender pipeline
     def_df = pd.read_csv("merged_def_stats.csv")
     def_pipeline = DefenderPipeline(def_df, model_name='xgboost')
     def_pipeline.build_features()
     def_pipeline.train_test_split(train_seasons=['2023-2024'], test_season='2024-2025') 
     def_pipeline.train_model(best_params={'n_estimators': 123, 'max_depth': 7, 'learning_rate': 0.03284182903635011, 'subsample': 0.9842574373873748, 'colsample_bytree': 0.6021656349105039})
-    # def_pipeline.model.plot_residual_heteroskedasticity()
-    # def_feature_importances = def_pipeline.model.plot_feature_importances()
-    # def_pipeline.predict_next_gw(season='2025-2026', gw=1)
 
     # Midfielder pipeline
     mid_df = pd.read_csv("merged_mid_stats.csv")
@@ -690,8 +682,6 @@ if __name__ == "__main__":
     mid_pipeline.build_features()
     mid_pipeline.train_test_split(train_seasons=['2023-2024'], test_season='2024-2025')
     mid_pipeline.train_model(best_params={'n_estimators': 123, 'max_depth': 7, 'learning_rate': 0.03284182903635011, 'subsample': 0.9842574373873748, 'colsample_bytree': 0.6021656349105039})
-    # mid_feature_importances = mid_pipeline.model.plot_feature_importances()
-    # mid_pipeline.model.plot_residual_heteroskedasticity()
 
     # Forward pipeline
     fwd_df = pd.read_csv("merged_fwd_stats.csv")
@@ -699,7 +689,6 @@ if __name__ == "__main__":
     fwd_pipeline.build_features()
     fwd_pipeline.train_test_split(train_seasons=['2023-2024'], test_season='2024-2025')
     fwd_pipeline.train_model(best_params={'n_estimators': 60, 'max_depth': 3, 'learning_rate': 0.023469835157219225, 'subsample': 0.7081955706547465, 'colsample_bytree': 0.8680614630492703})
-    # fwd_pipeline.model.plot_residual_heteroskedasticity()
 
     output = []
     for pos, combined in [('FWD', fwd_pipeline), ('GK', gk_pipeline), ('DEF', def_pipeline), ('MID', mid_pipeline)]:
