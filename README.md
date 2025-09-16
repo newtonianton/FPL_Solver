@@ -34,12 +34,7 @@ Full FPL pipeline: cleans FBRef + FPL data, predicts player points by combining 
 
 ## Pipeline
 Prep: fixture_scraper.py, install chromedriver
-global_scraper.py (Fantasy-Premier-League/global_scraper.py)
-final_fbref_scraper.py
-final_df_merger.py
-final_cleaning_all_players.py
-final_ML_model.py
-final_simulation.py
+run_pipeline.py
 
 # Credit
 - Credit to https://github.com/vaastav/Fantasy-Premier-League for global_scraper.py and FPL Data
