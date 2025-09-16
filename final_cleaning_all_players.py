@@ -1,5 +1,6 @@
 import pandas as pd
 from bs4 import BeautifulSoup
+import os
 
 df = pd.read_csv("all_players_merged.csv")
 df['date'] = pd.to_datetime(df['date'])
@@ -42,6 +43,34 @@ away_team_cols = ['strength_overall_home_opp', 'strength_overall_away_opp', 'str
 team_strength_data = {}
 for season_fbref, fpl_path, fbref_path in seasons:
     team_strength_data[season_fbref] = pd.read_csv(f"{fpl_path}/teams.csv")
+
+# --- Generate master player_fbref_id_map.csv if not exists ---
+def generate_player_fbref_id_map():
+    merged_files = [
+        "merged_gk_stats.csv",
+        "merged_fwd_stats.csv",
+        "merged_def_stats.csv",
+        "merged_mid_stats.csv",
+        "ML_model_predictions.csv"
+    ]
+    player_map = {}
+    for file in merged_files:
+        if os.path.exists(file):
+            df = pd.read_csv(file)
+            for _, row in df.iterrows():
+                name = row.get("Player_Name_fbref")
+                fbref_id = row.get("FBRef_ID")
+                if pd.notnull(name) and pd.notnull(fbref_id):
+                    player_map[name] = fbref_id
+    # Write to master CSV
+    with open("player_fbref_id_map.csv", "w", newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(["Player_Name_fbref", "FBRef_ID"])
+        for name, fbref_id in sorted(player_map.items()):
+            writer.writerow([name, fbref_id])
+
+if not os.path.exists("player_fbref_id_map.csv"):
+    generate_player_fbref_id_map()
 
 def get_team_strength(row):
     teams_df = team_strength_data[row['Season_fbref']]

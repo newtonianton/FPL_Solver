@@ -8,6 +8,17 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 
+def load_player_fbref_id_map():
+    """Load master player_fbref_id_map.csv as a dict."""
+    player_map = {}
+    if os.path.exists("player_fbref_id_map.csv"):
+        with open("player_fbref_id_map.csv", newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                player_map[row["Player_Name_fbref"]] = row["FBRef_ID"]
+    return player_map
+
+
 class MatchData:
     def __init__(self) -> None:
         self.comp = ""
@@ -41,36 +52,38 @@ def setup_driver():
         options.add_argument('--headless')
         options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
 
-        service = Service(r"PATH TO CHROMEDRIVER")  # Update this path
+        # Update this path to your chromedriver executable
+        service = Service(r"chromedriver-win64/chromedriver.exe")
         driver = webdriver.Chrome(service=service, options=options)
     return driver
 
 
 def get_fbref_data_selenium(url):  # returns BeautifulSoup object
-    """Use Selenium to bypass Cloudflare"""
+    """Use Selenium to bypass Cloudflare, with retry on failure."""
     driver = setup_driver()
-
-    try:
-        driver.get(url)
-
-        # Wait for content to load (bypass Cloudflare challenge)
-        wait = WebDriverWait(driver, 8)
-        wait.until(EC.presence_of_element_located((By.TAG_NAME, "table")))
-
-        # Additional safety wait
-        time.sleep(0.3)
-
-        html = driver.page_source
-
-        time.sleep(3) #maximum 20 requests per minute to avoid being blocked
-        return BeautifulSoup(html, 'html.parser')
-
-    except Exception as e:
-        print(f"Failed to load {url}: {e}")
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            driver.get(url)
+            wait = WebDriverWait(driver, 8)
+            wait.until(EC.presence_of_element_located((By.TAG_NAME, "table")))
+            time.sleep(0.3)
+            html = driver.page_source
+            time.sleep(3) # maximum 20 requests per minute to avoid being blocked
+            soup = BeautifulSoup(html, 'html.parser')
+            if soup is not None:
+                return soup
+        except Exception as e:
+            print(f"Failed to load {url} (attempt {attempt+1}/{max_retries}): {e}")
+            time.sleep(2)
+    print(f"Giving up on {url} after {max_retries} attempts.")
+    return None
 
 
 def get_data(url):
     parsed_html = get_fbref_data_selenium(url=url)
+    if parsed_html is None:
+        return []
     comments = parsed_html.find_all(string=lambda text: isinstance(text, Comment))
     tables = []
     for c in comments:
@@ -82,17 +95,23 @@ def get_data(url):
 
 def get_table_data(url):
     parsed_html = get_fbref_data_selenium(url=url)
+    if parsed_html is None:
+        return None
     tables = parsed_html.find_all('table')
-    return tables[0]
+    return tables[0] if tables else None
 
 
 def get_matches_data(player):
     tables = []
     for l in player.matches_links:
-        tables += [get_table_data(l)]
+        t = get_table_data(l)
+        if t is not None:
+            tables.append(t)
     matches = []
     match_stat_set = set()
     for t in tables:
+        if t is None or t.tbody is None:
+            continue
         for row in t.tbody.find_all('tr'):
             data = {}
             class_name = row.get('class')

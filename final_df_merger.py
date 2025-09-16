@@ -5,6 +5,7 @@ import pandas as pd
 import glob
 from final_fbref_scraper import get_epl_players
 from difflib import SequenceMatcher
+from final_fbref_scraper import load_player_fbref_id_map
 
 seasons = [
     ("2023-2024", "Fantasy-Premier-League/data/2023-24", "new_data/2023-2024/fbref"),
