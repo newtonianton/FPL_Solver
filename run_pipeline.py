@@ -48,21 +48,6 @@ if __name__ == "__main__":
         budget=1000,
         fixed_players=[],
         fixed_in_xi=True,
-        initial_squad=["Erling Haaland",
-                       "Nick Pope",
-                       "Jurriën Timber",
-                       "Riccardo Calafiori",
-                       "Maxence Lacroix",
-                       "David Brooks",
-                       "Antoine Semenyo",
-                       "Bruno Borges Fernandes",
-                       "Bryan Mbeumo",
-                       "Lyle Foster",
-                       "Chris Wood",
-                       "Mads Hermansen",
-                       "Declan Rice",
-                       "John Stones",
-                       "Dan Burn"],
         initial_free_transfers=2
     )
     print("\nFull simulation completed.")
