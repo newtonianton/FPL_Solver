@@ -60,7 +60,7 @@ class FPLSimulator:
         else:
             return np.zeros(self.n_sims)
     
-    def simulate_squad_horizon(self, xi_ids_per_gw, captain_per_gw=None):
+    def simulate_squad_horizon(self, xi_ids_per_gw, captain_per_gw=None, injured_players=None):
         """
         Simulate total points for a squad across multiple gameweeks.
 
@@ -78,19 +78,21 @@ class FPLSimulator:
         """
         total_points = np.zeros(self.n_sims)
 
+        injured_set = set(injured_players) if injured_players else set()
         for gw, xi_ids in xi_ids_per_gw.items():
             gw_points = np.zeros(self.n_sims)
             for p_id in xi_ids:
-                player_row = self.players_df[(self.players_df['Player_Name_fbref'] == p_id) &
-                                             (self.players_df['gameweek'] == gw)]
+                if p_id in injured_set:
+                    continue
+                player_row = self.players_df[(self.players_df['Player_Name_fbref'] == p_id) & (self.players_df['gameweek'] == gw)]
                 gw_points += self.simulate_player_points(player_row.iloc[0])
 
             # Apply captain multiplier if provided
             if captain_per_gw and gw in captain_per_gw:
                 cap_id = captain_per_gw[gw]
-                cap_row = self.players_df[(self.players_df['Player_Name_fbref'] == cap_id) &
-                                          (self.players_df['gameweek'] == gw)]
-                gw_points += self.simulate_player_points(cap_row.iloc[0])
+                if cap_id not in injured_set:
+                    cap_row = self.players_df[(self.players_df['Player_Name_fbref'] == cap_id) & (self.players_df['gameweek'] == gw)]
+                    gw_points += self.simulate_player_points(cap_row.iloc[0])
             
             total_points += gw_points
 
@@ -110,6 +112,7 @@ class FPLSimulator:
         clash_penalty=10.5,
         risk_lambda=0.75,
         cov_matrix=None,
+        injured_players=None,
     ):
         '''
         Optimise a squad for multiple GWs (fixed horizon, no transfers yet).
@@ -124,6 +127,9 @@ class FPLSimulator:
         '''
         if fixed_players is None:
             fixed_players = []
+        if injured_players is None:
+            injured_players = []
+        injured_set = set(injured_players)
 
         df = self.players_df.copy()
         df = df[df['gameweek'].isin(gw_list)].copy()
@@ -160,7 +166,7 @@ class FPLSimulator:
 
         # Base points (including captain double count by adding c again)
         base_points = pulp.lpSum(
-            epts.get((p, gw), 0.0) * (y[(p, gw)] + c[(p, gw)])
+            (0.0 if p in injured_set else epts.get((p, gw), 0.0)) * (y[(p, gw)] + c[(p, gw)])
             for p in players for gw in gw_list
         )
         transfer_cost_term = pulp.lpSum(transfer_cost * extra[gw] for gw in gw_list[1:])
@@ -330,7 +336,8 @@ class FPLSimulator:
             "free_transfers": free_transfers_by_gw,
             "transfers": transfers_by_gw,
             # Preserve the originally supplied initial squad (order as given) for accurate first GW diff
-            "initial_squad_original": initial_squad if initial_squad else None
+            "initial_squad_original": initial_squad if initial_squad else None,
+            "injured_players": injured_players,
         }
 
 def pretty_print_result(result, players_df):
@@ -385,13 +392,16 @@ def pretty_print_result(result, players_df):
         pos = meta.loc[name]['position'] if name in meta.index else ''
         return (pos_order.get(pos, 9), name)
 
+    injured_set = set(result.get('injured_players') or [])
     for name in sorted(initial, key=sort_key):
         ep = epts.get((name, int(gw0)), None)
         ep_str = f"{ep:.2f}" if ep is not None and not pd.isna(ep) else "NA"
         opp = opp_lookup.get((name, int(gw0)), "?")
         if name in meta.index:
             pos = meta.loc[name, 'position']; team = meta.loc[name, 'team']; price = meta.loc[name, 'value']
-            print(f"  - {name} [{pos}] ({team}) · £{price} · E[pts]={ep_str} · vs {opp}")
+            injury_tag = " (INJURED)" if name in injured_set else ""
+            adj_ep = "0.00" if name in injured_set else ep_str
+            print(f"  - {name} [{pos}] ({team}) · £{price} · E[pts]={adj_ep} · vs {opp}{injury_tag}")
         else:
             print(f"  - {name} · E[pts]={ep_str} · vs {opp}")
     print("")
@@ -419,7 +429,9 @@ def pretty_print_result(result, players_df):
                 opp = opp_lookup.get((name, int(gw)), "?")
                 if name in meta.index:
                     pos = meta.loc[name, 'position']; team = meta.loc[name, 'team']; price = meta.loc[name, 'value']
-                    print(f"    + {name} [{pos}] ({team}) · £{price} · E[pts]={ep_str} · vs {opp}")
+                    injury_tag = " (INJURED)" if name in injured_set else ""
+                    adj_ep = "0.00" if name in injured_set else ep_str
+                    print(f"    + {name} [{pos}] ({team}) · £{price} · E[pts]={adj_ep} · vs {opp}{injury_tag}")
                 else:
                     print(f"    + {name} · E[pts]={ep_str} · vs {opp}")
         if outs:
@@ -430,7 +442,9 @@ def pretty_print_result(result, players_df):
                 opp = opp_lookup.get((name, int(gw)), "?")
                 if name in meta.index:
                     pos = meta.loc[name, 'position']; team = meta.loc[name, 'team']; price = meta.loc[name, 'value']
-                    print(f"    - {name} [{pos}] ({team}) · £{price} · E[pts]={ep_str} · vs {opp}")
+                    injury_tag = " (INJURED)" if name in injured_set else ""
+                    adj_ep = "0.00" if name in injured_set else ep_str
+                    print(f"    - {name} [{pos}] ({team}) · £{price} · E[pts]={adj_ep} · vs {opp}{injury_tag}")
                 else:
                     print(f"    - {name} · E[pts]={ep_str} · vs {opp}")
         if not ins and not outs:
@@ -446,7 +460,9 @@ def pretty_print_result(result, players_df):
                 opp = opp_lookup.get((name, int(gw)), "?")
                 if name in meta.index:
                     pos = meta.loc[name, 'position']; team = meta.loc[name, 'team']
-                    print(f"    - {name} [{pos}] ({team}) · E[pts]={ep_str} · vs {opp}")
+                    injury_tag = " (INJURED)" if name in injured_set else ""
+                    adj_ep = "0.00" if name in injured_set else ep_str
+                    print(f"    - {name} [{pos}] ({team}) · E[pts]={adj_ep} · vs {opp}{injury_tag}")
                 else:
                     print(f"    - {name} · E[pts]={ep_str} · vs {opp}")
         print("")
@@ -464,12 +480,14 @@ def pretty_print_result(result, players_df):
                 opp = opp_lookup.get((name, int(gw)), "?")
                 if name in meta.index:
                     pos = meta.loc[name, 'position']; team = meta.loc[name, 'team']
-                    print(f"    - {name} [{pos}] ({team}) · E[pts]={ep_str} · vs {opp}")
+                    injury_tag = " (INJURED)" if name in injured_set else ""
+                    adj_ep = "0.00" if name in injured_set else ep_str
+                    print(f"    - {name} [{pos}] ({team}) · E[pts]={adj_ep} · vs {opp}{injury_tag}")
                 else:
                     print(f"    - {name} · E[pts]={ep_str} · vs {opp}")
         print("")
-
-    prev_set = curr_set
+        # Update previous squad set for next GW (week-to-week diff after first GW)
+        prev_set = curr_set
 
 
 def full_simulation(
@@ -478,7 +496,8 @@ def full_simulation(
     fixed_players=None,
     fixed_in_xi=False,
     initial_squad=None,
-    initial_free_transfers=1
+    initial_free_transfers=1,
+    injured_players=None,
 ):
     ML_output = pd.read_csv("ML_model_predictions.csv")
     # Check for duplicate player IDs/names (only warn for duplicates in unique player list)
@@ -514,6 +533,7 @@ def full_simulation(
         initial_squad=initial_squad,
         initial_free_transfers=initial_free_transfers,
         clash_pairs=clash_pairs,
+        injured_players=injured_players,
     )
 
     # Post-solve checks for constraint violations
@@ -567,7 +587,11 @@ if __name__ == "__main__":
                        "Declan Rice",
                        "John Stones",
                        "Dan Burn"],
-        initial_free_transfers=2
+        initial_free_transfers=2,
+        # Example: add names whose points should be treated as 0 due to injury
+        injured_players=[
+            "John Stones",
+        ]
     )
 
 
